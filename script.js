@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const roll2 = Math.floor(Math.random() * 6) + 1;
             updateDiceFace(dice1, roll1);
             updateDiceFace(dice2, roll2);
-            totalDisplay.textContent = roll1 + roll2;
+            totalDisplay.textContent = `Total: ${roll1 + roll2}`;
 
             dice1.classList.remove("rolling");
             dice2.classList.remove("rolling");
