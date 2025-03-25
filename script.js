@@ -10,14 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let rollSum = 0;
     let rollHistory = [];
 
-    function rollDice() 
-    
-    {
+    function rollDice() {
         dice1.classList.add("rolling");
         dice2.classList.add("rolling");
 
-        setTimeout(() =>
-            {
+        setTimeout(() => {
             const roll1 = Math.floor(Math.random() * 6) + 1;
             const roll2 = Math.floor(Math.random() * 6) + 1;
             updateDiceFace(dice1, roll1);
@@ -25,40 +22,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
             rollHistory.push(`[${roll1}, ${roll2}]`);
 
-            if (roll1 === roll2) 
-            {
+            if (roll1 === roll2) {
                 rollCount++;
                 rollSum += roll1 + roll2;
-                
 
-                if (rollCount === 3) 
-                {
+                if (rollCount === 3) {
                     totalDisplay.textContent = "Missed your turn! hihihi";
-                    //historyDisplay.textContent = `History: ${rollHistory.join(" → ")}`;
-                    //animateHistory();
                     resetRolling();
-                } 
-                else 
-                {
+                } else {
                     totalDisplay.textContent = `You rolled doubles: ${rollSum} - Roll again`;
-                    //diceContainer.removeEventListener("click", rollDice);
-                    //diceContainer.addEventListener("click", continueRolling);
                     diceContainer.addEventListener("click", rollDice);
-                  
                 }
-            } 
-            
-            else 
-            {
-                if (rollCount > 0) 
-                {
+            } else {
+                if (rollCount > 0) {
                     total = rollSum + roll1 + roll2;
                     totalDisplay.textContent = `${total}`;
-                    //historyDisplay.textContent = `History: ${rollHistory.join(" → ")}`;
-                    //animateHistory();
-                } 
-                else 
-                {
+                } else {
                     total = roll1 + roll2;
                     totalDisplay.textContent = `${total}`;
                 }
@@ -70,28 +49,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1000);
     }
 
-    //function continueRolling() {
-        //diceContainer.removeEventListener("click", continueRolling);
-       // rollDice();
-   // }
-
     function resetRolling() {
         rollCount = 0;
         rollSum = 0;
         rollHistory = [];
         setTimeout(() => {
-            //historyDisplay.style.transform = "scale(1)"; // Reset size
-            //historyDisplay.textContent = "";
+            // Reset size and history display if needed
         }, 2000);
-        //diceContainer.addEventListener("click", continueRolling); //added here
-        diceContainer.addEventListener("click", rollDice);
-    }
-
-    function animateHistory() {
-        historyDisplay.style.transform = "scale(1.2)";
-        setTimeout(() => {
-            historyDisplay.style.transform = "scale(1)";
-        }, 500);
+        // Allow the dice to roll again when anywhere on the screen is clicked
+        document.addEventListener("click", rollDice);
     }
 
     function updateDiceFace(dice, number) {
@@ -117,5 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    diceContainer.addEventListener("click", rollDice);
+    // Listen for clicks anywhere on the screen to roll the dice
+    document.addEventListener("click", rollDice);
 });
