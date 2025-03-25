@@ -33,14 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (rollCount === 3) 
                 {
-                    totalDisplay.textContent = "Invalid Roll! Try again.";
+                    totalDisplay.textContent = "Missed your turn! hihihi";
                     //historyDisplay.textContent = `History: ${rollHistory.join(" → ")}`;
                     //animateHistory();
                     resetRolling();
                 } 
                 else 
                 {
-                    totalDisplay.textContent = `Same number! Roll again (Tap to continue).`;
+                    totalDisplay.textContent = `Hurray! you rolled doubles: Roll again`;
                     //diceContainer.removeEventListener("click", rollDice);
                     //diceContainer.addEventListener("click", continueRolling);
                     diceContainer.addEventListener("click", rollDice);
