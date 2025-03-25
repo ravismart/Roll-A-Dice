@@ -31,11 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 rollSum += roll1 + roll2;
                 
 
-                if (rollCount === 2) 
+                if (rollCount === 3) 
                 {
                     totalDisplay.textContent = "Invalid Roll! Try again.";
-                    historyDisplay.textContent = `History: ${rollHistory.join(" → ")}`;
-                    animateHistory();
+                    //historyDisplay.textContent = `History: ${rollHistory.join(" → ")}`;
+                    //animateHistory();
                     resetRolling();
                 } 
                 else 
@@ -52,8 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 {
                     total = rollSum + roll1 + roll2;
                     totalDisplay.textContent = `Total: ${total}`;
-                    historyDisplay.textContent = `History: ${rollHistory.join(" → ")}`;
-                    animateHistory();
+                    //historyDisplay.textContent = `History: ${rollHistory.join(" → ")}`;
+                    //animateHistory();
                 } 
                 else 
                 {
@@ -78,10 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
         rollSum = 0;
         rollHistory = [];
         setTimeout(() => {
-            historyDisplay.style.transform = "scale(1)"; // Reset size
-            historyDisplay.textContent = "";
+            //historyDisplay.style.transform = "scale(1)"; // Reset size
+            //historyDisplay.textContent = "";
         }, 2000);
-        diceContainer.addEventListener("click", rollDice);
+        diceContainer.addEventListener("click", continueRolling); //added here
     }
 
     function animateHistory() {
