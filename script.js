@@ -7,17 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
     function rollDice() {
         dice1.classList.add("rolling");
         dice2.classList.add("rolling");
-        
+
         setTimeout(() => {
             const roll1 = Math.floor(Math.random() * 6) + 1;
             const roll2 = Math.floor(Math.random() * 6) + 1;
             updateDiceFace(dice1, roll1);
             updateDiceFace(dice2, roll2);
             totalDisplay.textContent = roll1 + roll2;
-            
+
             dice1.classList.remove("rolling");
             dice2.classList.remove("rolling");
-        }, 600);
+        }, 1500); // 1.5-second delay for the animation to complete
     }
 
     function updateDiceFace(dice, number) {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             5: [0, 2, 4, 6, 8],
             6: [0, 2, 3, 5, 6, 8]
         };
-        
+
         for (let i = 0; i < 9; i++) {
             const dot = document.createElement("div");
             dot.classList.add("dot");
@@ -43,5 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    diceContainer.addEventListener("click", rollDice);
+    // Roll the dice when tapping anywhere in the dice container or on the screen
+    document.body.addEventListener("click", rollDice); // Tapping anywhere on the screen triggers the roll
 });
