@@ -10,11 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let rollSum = 0;
     let rollHistory = [];
 
-    function rollDice() {
+    function rollDice() 
+    
+    {
         dice1.classList.add("rolling");
         dice2.classList.add("rolling");
 
-        setTimeout(() => {
+        setTimeout(() =>
+            {
             const roll1 = Math.floor(Math.random() * 6) + 1;
             const roll2 = Math.floor(Math.random() * 6) + 1;
             updateDiceFace(dice1, roll1);
@@ -22,27 +25,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
             rollHistory.push(`[${roll1}, ${roll2}]`);
 
-            if (roll1 === roll2) {
+            if (roll1 === roll2) 
+            {
                 rollCount++;
                 rollSum += roll1 + roll2;
+                
 
-                if (rollCount === 3) {
+                if (rollCount === 2) 
+                {
                     totalDisplay.textContent = "Invalid Roll! Try again.";
                     historyDisplay.textContent = `History: ${rollHistory.join(" → ")}`;
                     animateHistory();
                     resetRolling();
-                } else {
+                } 
+                else 
+                {
                     totalDisplay.textContent = `Same number! Roll again (Tap to continue).`;
                     diceContainer.removeEventListener("click", rollDice);
                     diceContainer.addEventListener("click", continueRolling);
                 }
-            } else {
-                if (rollCount > 0) {
+            } 
+            
+            else 
+            {
+                if (rollCount > 0) 
+                {
                     total = rollSum + roll1 + roll2;
                     totalDisplay.textContent = `Total: ${total}`;
                     historyDisplay.textContent = `History: ${rollHistory.join(" → ")}`;
                     animateHistory();
-                } else {
+                } 
+                else 
+                {
                     total = roll1 + roll2;
                     totalDisplay.textContent = `Total: ${total}`;
                 }
