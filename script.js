@@ -3,6 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const dice1 = document.getElementById("dice1");
     const dice2 = document.getElementById("dice2");
     const totalDisplay = document.getElementById("total");
+    const historyDisplay = document.getElementById("history"); // Display all rolls
+
+    let total = 0;
+    let rollCount = 0;
+    let rollSum = 0;
+    let rollHistory = [];
 
     function rollDice() {
         dice1.classList.add("rolling");
@@ -13,11 +19,62 @@ document.addEventListener("DOMContentLoaded", () => {
             const roll2 = Math.floor(Math.random() * 6) + 1;
             updateDiceFace(dice1, roll1);
             updateDiceFace(dice2, roll2);
-            totalDisplay.textContent = `Total: ${roll1 + roll2}`;
+
+            rollHistory.push(`[${roll1}, ${roll2}]`);
+
+            if (roll1 === roll2) {
+                rollCount++;
+                rollSum += roll1 + roll2;
+
+                if (rollCount === 3) {
+                    totalDisplay.textContent = "Invalid Roll! Try again.";
+                    historyDisplay.textContent = `History: ${rollHistory.join(" → ")}`;
+                    animateHistory();
+                    resetRolling();
+                } else {
+                    totalDisplay.textContent = `Same number! Roll again (Tap to continue).`;
+                    diceContainer.removeEventListener("click", rollDice);
+                    diceContainer.addEventListener("click", continueRolling);
+                }
+            } else {
+                if (rollCount > 0) {
+                    total = rollSum + roll1 + roll2;
+                    totalDisplay.textContent = `Total: ${total}`;
+                    historyDisplay.textContent = `History: ${rollHistory.join(" → ")}`;
+                    animateHistory();
+                } else {
+                    total = roll1 + roll2;
+                    totalDisplay.textContent = `Total: ${total}`;
+                }
+                resetRolling();
+            }
 
             dice1.classList.remove("rolling");
             dice2.classList.remove("rolling");
-        }, 1000); // Adjusted the timeout to match the roll animation duration
+        }, 1000);
+    }
+
+    function continueRolling() {
+        diceContainer.removeEventListener("click", continueRolling);
+        rollDice();
+    }
+
+    function resetRolling() {
+        rollCount = 0;
+        rollSum = 0;
+        rollHistory = [];
+        setTimeout(() => {
+            historyDisplay.style.transform = "scale(1)"; // Reset size
+            historyDisplay.textContent = "";
+        }, 2000);
+        diceContainer.addEventListener("click", rollDice);
+    }
+
+    function animateHistory() {
+        historyDisplay.style.transform = "scale(1.2)";
+        setTimeout(() => {
+            historyDisplay.style.transform = "scale(1)";
+        }, 500);
     }
 
     function updateDiceFace(dice, number) {
@@ -43,6 +100,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Roll the dice when tapping anywhere in the dice container or on the screen
-    document.body.addEventListener("click", rollDice); // Tapping anywhere on the screen triggers the roll
+    diceContainer.addEventListener("click", rollDice);
 });
