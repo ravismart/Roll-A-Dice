@@ -41,8 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 else 
                 {
                     totalDisplay.textContent = `Same number! Roll again (Tap to continue).`;
-                    diceContainer.removeEventListener("click", rollDice);
-                    diceContainer.addEventListener("click", continueRolling);
+                    //diceContainer.removeEventListener("click", rollDice);
+                    //diceContainer.addEventListener("click", continueRolling);
+                    diceContainer.addEventListener("click", rollDice);
+                  
                 }
             } 
             
@@ -68,10 +70,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1000);
     }
 
-    function continueRolling() {
-        diceContainer.removeEventListener("click", continueRolling);
-        rollDice();
-    }
+    //function continueRolling() {
+        //diceContainer.removeEventListener("click", continueRolling);
+       // rollDice();
+   // }
 
     function resetRolling() {
         rollCount = 0;
@@ -81,7 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
             //historyDisplay.style.transform = "scale(1)"; // Reset size
             //historyDisplay.textContent = "";
         }, 2000);
-        diceContainer.addEventListener("click", continueRolling); //added here
+        //diceContainer.addEventListener("click", continueRolling); //added here
+        diceContainer.addEventListener("click", rollDice);
     }
 
     function animateHistory() {
