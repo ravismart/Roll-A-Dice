@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             dice1.classList.remove("rolling");
             dice2.classList.remove("rolling");
-        }, 1500); // 1.5-second delay for the animation to complete
+        }, 1000); // Removed delay, updated timing for animation duration
     }
 
     function updateDiceFace(dice, number) {
