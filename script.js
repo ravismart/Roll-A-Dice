@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } 
                 else 
                 {
-                    totalDisplay.textContent = `Hurray! you rolled doubles: Roll again`;
+                    totalDisplay.textContent = `You rolled doubles: ${rollSum} - Roll again`;
                     //diceContainer.removeEventListener("click", rollDice);
                     //diceContainer.addEventListener("click", continueRolling);
                     diceContainer.addEventListener("click", rollDice);
@@ -53,14 +53,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (rollCount > 0) 
                 {
                     total = rollSum + roll1 + roll2;
-                    totalDisplay.textContent = `Total: ${total}`;
+                    totalDisplay.textContent = `${total}`;
                     //historyDisplay.textContent = `History: ${rollHistory.join(" → ")}`;
                     //animateHistory();
                 } 
                 else 
                 {
                     total = roll1 + roll2;
-                    totalDisplay.textContent = `Total: ${total}`;
+                    totalDisplay.textContent = `${total}`;
                 }
                 resetRolling();
             }
